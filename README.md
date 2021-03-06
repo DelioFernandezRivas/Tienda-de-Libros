@@ -1,2 +1,2 @@
 # Tienda-de-Libros
-Pequeña tienda para comprar/alquilar de libros
+Pequeña tienda para comprar/alquilar libros
