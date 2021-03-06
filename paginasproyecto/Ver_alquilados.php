@@ -73,11 +73,11 @@ include 'Conexion.php';
 							<?php
 							if (isset($_POST['volver_paginaprincipal'])) {
 								session_destroy();
-								header('Location:http://localhost/dashboard/index.php');
+								header('Location:../index.php');
 						}
 
 							if (isset($_POST['Volver_inicio'])) {
-								header('Location:http://localhost/dashboard/paginasproyecto/PaginaPrincipal.php');
+								header('Location:PaginaPrincipal.php');
 
 
 								}

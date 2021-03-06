@@ -292,7 +292,7 @@ $pdf->Output('ticket.pdf','i');
 			   				</form>
            <?php
               if (isset($_POST['Volver_inicio'])) {
-                header('Location:PaginasAdministradores/PaginaAdministradores.php');
+                header('Location:PaginaAdministradores.php');
 
 
 }

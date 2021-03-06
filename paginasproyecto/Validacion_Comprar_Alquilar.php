@@ -353,7 +353,7 @@ $_SESSION['Compralibro']=array();
 					<?php
 					if (isset($_POST['Volver_inicio'])) {
 						$_SESSION['Compralibro']=array();
-						header('Location:s/paginasproyecto/PaginaPrincipal.php');
+						header('Location:PaginaPrincipal.php');
 						}
 
 

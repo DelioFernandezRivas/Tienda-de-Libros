@@ -77,7 +77,7 @@ include 'Conexion.php';
 
               if(isset($_POST['configuracion'])){
 
-                header('Location:../configuracionusuario.php');
+                header('Location:paginasproyecto/configuracionusuario.php');
 
               }
               ?>
