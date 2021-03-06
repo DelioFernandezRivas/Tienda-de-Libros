@@ -6,7 +6,7 @@ $direccion = $_POST['Direccion'];
 $Nifdni = $_POST['Nifdni'];
 $nombre = $_POST['Nombre'];
 $telefono = $_POST['Teléfono'];
-$mysqli_link= mysqli_connect("localhost", "root", "", "viviroutrasvidas");
+include 'Conexion.php';
 //$sabernull=0;
 if(mysqli_connect_errno())
 {
@@ -78,7 +78,7 @@ if(!is_null(mysqli_fetch_array($resultado, MYSQLI_ASSOC))){
   if(is_null(mysqli_fetch_array($resultadonuevo, MYSQLI_ASSOC))){
 
     mysqli_query($mysqli_link, $insertarquery);
-    header('Location:http://localhost/dashboard/index.php');
+    header('Location:../index.php');
 
 
   }

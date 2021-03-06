@@ -5,14 +5,14 @@ session_start();
 if(!isset($_SESSION['usuario'])){
 
 	session_destroy();
-  header('Location:http://localhost/dashboard/index.php');
+  header('Location:../index.php');
 	}
 
 	if(isset($_SESSION['usuario'])){
 	$usuario=$_SESSION['usuario'];
 }
 $libros=$_SESSION['Compralibro'];
-  $mysqli_link= mysqli_connect("localhost", "root", "", "viviroutrasvidas");
+  include 'Conexion.php';
 	if(mysqli_connect_errno())
 	{
 	  printf("MySQL connection failed with the error: %s", mysqli_connect_error());
@@ -39,7 +39,7 @@ for($i=0;$i<count($librosarray);$i++)
                 $valorinicial=array_key_first($_SESSION['Compralibro']);
                 unset($_SESSION['Compralibro'][$key]);
                 array_splice($_SESSION['Compralibro'],$key,$valorinicial);
-                header('Location:http://localhost/dashboard/paginasproyecto/PaginaComprar_Alquilar.php');
+                header('Location:/paginasproyecto/PaginaComprar_Alquilar.php');
                 break;
               } 
             }
@@ -55,7 +55,7 @@ for($i=0;$i<count($librosarray);$i++)
                   unset($_SESSION['Compralibro'][$keyanterior]);
                 }
                 array_splice($_SESSION['Compralibro'],$keyprimera,$valorinicial);
-                header('Location:http://localhost/dashboard/paginasproyecto/PaginaComprar_Alquilar.php');
+                header('Location:/paginasproyecto/PaginaComprar_Alquilar.php');
               }
             }
           }
@@ -64,7 +64,7 @@ for($i=0;$i<count($librosarray);$i++)
         
          if(isset($_REQUEST["_".$librosarray[$i].'Aumentar'])){
           array_push($_SESSION['Compralibro'], $librosarray[$i]);
-          header('Location:http://localhost/dashboard/paginasproyecto/PaginaComprar_Alquilar.php');
+          header('Location:/paginasproyecto/PaginaComprar_Alquilar.php');
       }
       next($_SESSION['Compralibro']);
       next($librosarray);

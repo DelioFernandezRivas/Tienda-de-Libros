@@ -4,7 +4,7 @@ session_start();
 if(!isset($_SESSION['usuario'])){
 
 	session_destroy();
-  header('Location:http://localhost/dashboard/index.php');
+  header('Location:../index.php');
 	}
 	if(isset($_SESSION['usuario'])){
 	$usuario=$_SESSION['usuario'];
@@ -73,12 +73,12 @@ include 'Conexion.php';
 							<?php
 							if (isset($_POST['volver_paginaprincipal'])) {
 								session_destroy();
-								header('Location:http://localhost/dashboard/index.php');
+								header('Location:../index.php');
 						}
 
 							if(isset($_POST['configuracion'])){
 
-								header('Location:http://localhost/dashboard/paginasproyecto/configuracionusuario.php');
+								header('Location:configuracionusuario.php');
 
 							}
 							?>

@@ -1,6 +1,6 @@
 <?php
 session_start();
-$mysqli_link= mysqli_connect("localhost", "root", "", "viviroutrasvidas");
+include 'Conexion.php';
 //$sabernull=0;
 if(mysqli_connect_errno())
 {
@@ -10,7 +10,7 @@ if(mysqli_connect_errno())
 if(!isset($_SESSION['usuario'])){
 
 	session_destroy();
-  header('Location:http://localhost/dashboard/index.php');
+  header('Location:../index.php');
 	}
 	if(isset($_SESSION['usuario'])){
 	$usuariosesion=$_SESSION['usuario'];
@@ -80,12 +80,12 @@ if($direccion==""){
 if($tipo_usuario==0){
 $update="UPDATE `usuario` SET `contraseña` = '$contraseña',`nombre`= '$nombre',`direccion`= '$direccion',`telefono` = '$telefono',`nifdni`= '$Nifdni',`tipo_usuario`=0,`limite_inicios_sesion`=0 WHERE `usuario`.`usuario`='$usuariosesion';";
 mysqli_query($mysqli_link, $update); 
-header('Location:http://localhost/dashboard/paginasproyecto/PaginaPrincipal.php');
+header('Location:PaginaPrincipal.php');
 }
 else{
 $update="UPDATE `usuario` SET `contraseña` = '$contraseña',`nombre`= '$nombre',`direccion`= '$direccion',`telefono` = '$telefono',`nifdni`= '$Nifdni',`tipo_usuario`=1,`limite_inicios_sesion`=0 WHERE `usuario`.`usuario`='$usuariosesion';";
 mysqli_query($mysqli_link, $update); 
-header('Location:http://localhost/dashboard/paginasproyecto/PaginasAdministradores/PaginaAdministradores.php');
+header('Location:PaginasAdministradores/PaginaAdministradores.php');
 
 }
 }
@@ -130,7 +130,7 @@ mysqli_close($mysqli_link);
 							<?php
 							if (isset($_POST['volver_paginaprincipal'])) {
 								session_destroy();
-								header('Location:http://localhost/dashboard/index.php');
+								header('Location:../index.php');
 						}
 							?>
 

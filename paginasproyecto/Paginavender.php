@@ -28,7 +28,7 @@ if(!isset($_SESSION['Compralibro'])){
 
   }
   }
-$mysqli_link= mysqli_connect("localhost", "root", "", "viviroutrasvidas");
+include 'Conexion.php';
 			if(mysqli_connect_errno())
 			{
 			  printf("MySQL connection failed with the error: %s", mysqli_connect_error());
@@ -71,13 +71,13 @@ $mysqli_link= mysqli_connect("localhost", "root", "", "viviroutrasvidas");
               <?php
               if (isset($_POST['volver_paginaprincipal'])) {
                 session_destroy();
-                header('Location:http://localhost/dashboard/index.php');
+                header('Location:../index.php');
             }
               ?>
 
               <?php
               if (isset($_POST['Volver_inicio'])) {
-                header('Location:http://localhost/dashboard/paginasproyecto/PaginaPrincipal.php');
+                header('Location:PaginaPrincipal.php');
 
 
 }

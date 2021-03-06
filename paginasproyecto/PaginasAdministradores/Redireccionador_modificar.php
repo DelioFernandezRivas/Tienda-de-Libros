@@ -4,7 +4,7 @@ session_start();
 if(!isset($_SESSION['usuario'])){
 
   session_destroy();
-  header('Location:http://localhost/dashboard/index.php');
+  header('Location:../index.php');
   }
   if(isset($_SESSION['usuario'])){
   $usuario=$_SESSION['usuario'];
@@ -28,7 +28,7 @@ if(!isset($_SESSION['Compralibro'])){
 
   }
   }
-$mysqli_link= mysqli_connect("localhost", "root", "", "viviroutrasvidas");
+include 'Conexion.php';
       if(mysqli_connect_errno())
       {
         printf("MySQL connection failed with the error: %s", mysqli_connect_error());
@@ -47,14 +47,14 @@ $resultado= mysqli_query($mysqli_link, $selectquery);
       $id_venta=$fila['id_venta'];
 if($idpost==$id_alquilar){               
   $href = 'Modificar_Libro.php?ID='.$idpost.'';
-  header('Location:http://localhost/dashboard/paginasproyecto/PaginasAdministradores/'.$href.'');
+  header('Location:PaginasAdministradores/'.$href.'');
   break;
 
    }
 
    if($idpost==$id_venta){
      $href = 'Modificar_Libro.php?ID='.$idpost.'';
-     header('Location:http://localhost/dashboard/paginasproyecto/PaginasAdministradores/'.$href.'');
+     header('Location:PaginasAdministradores/'.$href.'');
      break;
 
    }

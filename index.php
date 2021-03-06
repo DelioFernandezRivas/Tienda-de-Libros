@@ -146,7 +146,7 @@ if(($usuarioOK==1 && $contraseñaOK==0)){
 if((($usuarioOK==1 && $contraseñaOK==1) && ($saberadmin!=2))){
 	session_start();
 	$_SESSION['usuario'] = $usuario;
-	header('Location:http://localhost/dashboard/paginasproyecto/PaginaPrincipal.php');
+	header('Location:/paginasproyecto/PaginaPrincipal.php');
  
 
 }
@@ -158,7 +158,7 @@ $message="Usuario Admin Bloqueado";
 elseif(($usuarioOK==1 && $contraseñaOK==1) && ($saberadmin==2)){
 session_start();
 $_SESSION['usuario'] = $usuario;
-header('Location:http://localhost/dashboard/paginasproyecto/PaginasAdministradores/PaginaAdministradores.php');
+header('Location:/paginasproyecto/PaginasAdministradores/PaginaAdministradores.php');
 
 
 }
@@ -350,7 +350,7 @@ echo "<META HTTP-EQUIV='Refresh' CONTENT='0; url=index.php'>";
         	if(isset($_POST['crear_cuenta'])){
     					
     					session_destroy();
-    					header('Location:http://localhost/dashboard/paginasproyecto/crear_cuenta.php');
+    					header('Location:/paginasproyecto/crear_cuenta.php');
 
     			}
         	?>

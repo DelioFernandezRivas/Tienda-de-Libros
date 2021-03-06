@@ -3,7 +3,7 @@ session_start();
 
 if(!isset($_SESSION['usuario'])){
   session_destroy();
-  header('Location:http://localhost/dashboard/index.php');
+  header('Location:../index.php');
 	}
 	if(isset($_SESSION['usuario'])){
 	$usuario=$_SESSION['usuario'];
@@ -29,7 +29,7 @@ if(!isset($_SESSION['usuario'])){
     $listaproductos=array();
   }
   }
-$mysqli_link= mysqli_connect("localhost", "root", "", "viviroutrasvidas");
+include 'Conexion.php';
 			if(mysqli_connect_errno())
 			{
 			  printf("MySQL connection failed with the error: %s", mysqli_connect_error());
@@ -68,7 +68,7 @@ $mysqli_link= mysqli_connect("localhost", "root", "", "viviroutrasvidas");
               <?php
                 if(isset($_POST['cancelar'])){
                     unset($_SESSION['Compralibro']);
-                    header('Location:http://localhost/dashboard/paginasproyecto/PaginaComprar_Alquilar.php');
+                    header('Location:PaginaComprar_Alquilar.php');
                   }
               ?>
     			    <div align="right" id="Sesion">
@@ -88,11 +88,11 @@ $mysqli_link= mysqli_connect("localhost", "root", "", "viviroutrasvidas");
 							<?php
 							if (isset($_POST['volver_paginaprincipal'])) {
 								session_destroy();
-								header('Location:http://localhost/dashboard/index.php');
+								header('Location:../index.php');
 						}
 
 							if (isset($_POST['Volver_inicio'])) {
-								header('Location:http://localhost/dashboard/paginasproyecto/PaginaPrincipal.php');
+								header('Location:PaginaPrincipal.php');
 
 
 								}
@@ -260,7 +260,7 @@ $mysqli_link= mysqli_connect("localhost", "root", "", "viviroutrasvidas");
                      
                     }
                        if(($validaralquilar==1 && $validarvender==1)||($validaralquilar==1 || $validarvender==1)){
-                          header('Location:http://localhost/dashboard/paginasproyecto/Validacion_Comprar_Alquilar.php');
+                          header('Location:Validacion_Comprar_Alquilar.php');
 
 
                        }

@@ -4,7 +4,7 @@ session_start();
 if(!isset($_SESSION['usuario'])){
 
   session_destroy();
-  header('Location:http://localhost/dashboard/index.php');
+  header('Location:../index.php');
   }
   if(isset($_SESSION['usuario'])){
   $usuario=$_SESSION['usuario'];
@@ -30,7 +30,7 @@ if(!isset($_SESSION['Compralibro'])){
   }
 
 
-$mysqli_link= mysqli_connect("localhost", "root", "", "viviroutrasvidas");
+include 'Conexion.php';
       if(mysqli_connect_errno())
       {
         printf("MySQL connection failed with the error: %s", mysqli_connect_error());
@@ -122,7 +122,7 @@ $mysqli_link= mysqli_connect("localhost", "root", "", "viviroutrasvidas");
 
         else{
 
-            header('Location:http://localhost/dashboard/paginasproyecto/Ver_alquilados.php');
+            header('Location:/paginasproyecto/Ver_alquilados.php');
 
         }
 

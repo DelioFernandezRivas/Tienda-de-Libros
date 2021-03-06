@@ -10,7 +10,7 @@ if(!isset($_SESSION['usuario'])){
 	$usuario=$_SESSION['usuario'];
 }
 
-$mysqli_link= mysqli_connect("localhost", "root", "", "viviroutrasvidas");
+include 'Conexion.php';
 			if(mysqli_connect_errno())
 			{
 			  printf("MySQL connection failed with the error: %s", mysqli_connect_error());
@@ -290,17 +290,9 @@ $pdf->Output('ticket.pdf','i');
 			  <input type="submit" name="Informe_Venta" value="Sacar Informe libros para Venta ">
 			  <input type="submit" name="Informe_Aquilar" value="Sacar Informe libros para Alquilar">
 			   				</form>
-					<?php
-					if (isset($_POST['Volver_inicio'])) {
-						$_SESSION['Compralibro']=array();
-						header('Location:http://localhost/dashboard/paginasproyecto/PaginaPrincipal.php');
-						}
-
-
-					?>
            <?php
               if (isset($_POST['Volver_inicio'])) {
-                header('Location:http://localhost/dashboard/paginasproyecto/PaginasAdministradores/PaginaAdministradores.php');
+                header('Location:PaginasAdministradores/PaginaAdministradores.php');
 
 
 }

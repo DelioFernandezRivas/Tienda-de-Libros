@@ -13,7 +13,7 @@ if(!isset($_SESSION['usuario'])){
 	$usuario=$_SESSION['usuario'];
 }
 $libros=array();
-$mysqli_link= mysqli_connect("localhost", "root", "", "viviroutrasvidas");
+include 'Conexion.php';
 			if(mysqli_connect_errno())
 			{
 			  printf("MySQL connection failed with the error: %s", mysqli_connect_error());
@@ -51,7 +51,7 @@ for($i=0;$i<count($librosarray);$i++)
 						$contador3++;
   	 			}
   	 				$contador++;
-  	 				header('Location:http://localhost/dashboard/paginasproyecto/PaginaComprar_Alquilar.php');
+  	 				header('Location:PaginaComprar_Alquilar.php');
 
 
   	 		}
