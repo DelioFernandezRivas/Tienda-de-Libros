@@ -23,7 +23,8 @@ $captchaOK=$_SESSION['captchaOK'];
 }
 $captchaOK=0;
 $verifica =$_SESSION["verifica"] ; 
-$mysqli_link= mysqli_connect("localhost", "root", "", "viviroutrasvidas");
+
+include 'Conexion.php';
 if(mysqli_connect_errno())
 {
   printf("MySQL connection failed with the error: %s", mysqli_connect_error());
