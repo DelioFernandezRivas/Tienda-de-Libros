@@ -59,9 +59,6 @@ $mysqli_link= mysqli_connect("localhost", "root", "", "viviroutrasvidas");
       <ul>
         <li>
           <div align="center" id="Comprar">
-            <!--<form method="post">
-          <input type="submit" name="Mostrar" value="Mostrar libros a Comprar/Alquilar">
-        </form>-->
         </div>
               <div align="right" id="Sesion">
             <?php

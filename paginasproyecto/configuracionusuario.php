@@ -163,16 +163,6 @@ mysqli_close($mysqli_link);
     <table>
       <tr>
       	<td>
-      	<!--
-      	<td><p>Contraseña Anterior</p></td>
-        <td>
-        	<?php
-				//echo "<p>".$contraseñasql."</p>";
-        	?>
-
-        -->
-
-
         </td>
         <td><p>Contraseña Nueva</p></td>
         <td><input type="password" name="Contraseña" required value="<?php echo  $contraseñasql ?>"></td>
@@ -245,15 +235,8 @@ mysqli_close($mysqli_link);
 
 
           ?>
-          <!--<form method="get" action="ejercicios/Ejercicio1.html">
-            <button type="submit">Crear Cuenta</button>
-          </form>-->
-<!--"window.location.href='https://w3docs.com';" como se insertar paginas de fuera-->
-<!--"document.location='/';" insertar paginas de dentro-->
-<!--<button onclick="document.location='/ejercicios/Ejercicio1.html';"> Crear Cuenta</button>-->
         </td>
         </table>
-      <!--  <script src="scripts/crear_cuenta.js"></script>-->
         </body>
     </center>
 </html>

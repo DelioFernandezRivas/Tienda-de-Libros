@@ -58,12 +58,10 @@ $mysqli_link= mysqli_connect("localhost", "root", "", "viviroutrasvidas");
         <li>
         <form method="post">
             <input type="submit" name="Volver_inicio" value="Volver Inicio">
-              <!--<input type="submit" name="Mostrar" value="Mostrar libros a Comprar/Alquilar">-->
             </form>
               <div align="right" id="Sesion">
             <?php
               echo '<p class="usuario">'.$usuario.'</p>';
-              //print_r($_SESSION['Compralibro']);
             ?>
               <form method="post">
                       <input text-align: center type="submit" name="volver_paginaprincipal" value="Salir Sesión">
@@ -178,14 +176,12 @@ $mysqli_link= mysqli_connect("localhost", "root", "", "viviroutrasvidas");
 	<div align="center" id="grancontenedor">
     <?php 
     echo '<form method='."'post'".'>';
-    // action='."'Admitir_usuarios_cojer_datos.php'".'
 
     ?>
   <div id ="contenedor">
   <div align="center" id="Izquierda">
   		<p>Usuario</p>
   		<?php
-  		//if (isset($_POST['Mostrar'])) {
   			 if(!isset($_GET['page']))
       {
 
@@ -200,12 +196,11 @@ $mysqli_link= mysqli_connect("localhost", "root", "", "viviroutrasvidas");
 				$nuevousuario=$fila['usuario'];
 				echo'<div align="center" id="usuario">';
 				echo "<br></br>";
-				//echo'<img src="$imagen" align=center">';
 				echo "<p>".$nuevousuario."</p>";
 				echo "<br></br>";
 				echo'</div>';
 
-		//}
+
 	}
   		?>
   </div>
@@ -213,7 +208,6 @@ $mysqli_link= mysqli_connect("localhost", "root", "", "viviroutrasvidas");
   <div align="center" id="Derecha">
   	<p>Datos</p>
   	<?php
-  		//if (isset($_POST['Mostrar'])) {
   			if(!isset($_GET['page']))
       {
 
@@ -222,7 +216,6 @@ $mysqli_link= mysqli_connect("localhost", "root", "", "viviroutrasvidas");
       else{
       $idcontadorpaginas=$_GET['page'];
     }
-      //echo $idcontadorpaginas;
       $selectquery="SELECT * FROM `novo_rexistro` WHERE pagina_web='$idcontadorpaginas'";
       $resultado= mysqli_query($mysqli_link, $selectquery);
   	 while($fila=mysqli_fetch_array($resultado, MYSQLI_ASSOC)){
@@ -272,8 +265,6 @@ $mysqli_link= mysqli_connect("localhost", "root", "", "viviroutrasvidas");
             echo "<p>"."Teléfono: ".$telefonosql."</p>";
 
           }
-				//echo "<p>".$descripcion."</p>";
-				//echo '<button onclick="document.location='."'".$titulo.".php'".";".'">'.$titulo."</button>";
         echo '<input type="checkbox" name="'."usuario".$nuevousuario.'" value="'.$nuevousuario.'">';
       
       
@@ -294,7 +285,6 @@ if(isset($_POST['Validar_usuarios'])){
       $contadorusuarios=0;
       foreach ($usuariostotales as $key => $usuario) {
         if(isset($_POST['usuario'.$usuario])){
-          //echo $usuario;
           $selectquery="SELECT * FROM `novo_rexistro`";
       $resultado= mysqli_query($mysqli_link, $selectquery);
       while($fila=mysqli_fetch_array($resultado, MYSQLI_ASSOC)){
@@ -310,8 +300,6 @@ if(isset($_POST['Validar_usuarios'])){
               mysqli_query($mysqli_link,  $insert);
               $delete="DELETE FROM `novo_rexistro` WHERE `usuario`='$usuariosql'";
               mysqli_query($mysqli_link,$delete);
-              //header('Location:http://localhost/dashboard/paginasproyecto/PaginasAdministradores/Admitir_usuarios.php');
-              //echo "funciona";
           } 
         }
         
@@ -347,20 +335,6 @@ if(isset($_POST['Validar_usuarios'])){
      header('Location:http://localhost/dashboard/paginasproyecto/PaginasAdministradores/Admitir_usuarios.php');
    }
 echo'</div>';
- /*
-     $selectquery="SELECT * FROM `libro_para_alquilar`";
-     $resultado= mysqli_query($mysqli_link, $selectquery);
-     $contadorcadatres=0;
-     $contador=0;
-     while($fila=mysqli_fetch_array($resultado, MYSQLI_ASSOC)){
-      if($contadorcadatres==($contadorcadatres>=3)){
-      $href = 'Paginaalquilar.php?ID='.$contador.'';
-      echo '<button type=button onclick="window.location.href='."'".$href."'".'">'.$contador."</button>";
-      $contador++;
-  }
-      $contadorcadatres++;
-}
-*/
 
 $selectquery="SELECT * FROM `novo_rexistro`";
 $resultado= mysqli_query($mysqli_link, $selectquery);
@@ -370,11 +344,9 @@ $pagina=1;
 $selectquery2="SELECT * FROM `novo_rexistro`";
 $resultado= mysqli_query($mysqli_link, $selectquery2);
 $filas=mysqli_num_rows($resultado);
-//echo $filas;
      while($fila=mysqli_fetch_array($resultado, MYSQLI_ASSOC)){
       $pagina_web=$fila['pagina_web'];
       $saberlibrosquedan=$filas-$contadortotales;
-       //echo " ".$saberlibrosquedan." ";
       if($saberlibrosquedan==1){
           $href = 'Admitir_usuarios.php?page='.$pagina.'';
           echo '<button type=button onclick="window.location.href='."'".$href."'".'">'.$pagina."</button>";
@@ -390,14 +362,6 @@ $filas=mysqli_num_rows($resultado);
         }
           $contadorpaginas++;
           $contadortotales++;
-/*
-          if($contadortotales==1){
-            $href = 'Paginavender.php?page='.$pagina.'';
-            echo '<button type=button onclick="window.location.href='."'".$href."'".'">'.$pagina."</button>";
-            $pagina++;
-            $contadortotales=1;
-          }
-          */
      }
 
 

@@ -33,14 +33,12 @@ if(mysqli_connect_errno())
 if ($_SESSION['intentosclientes']==5) {
     	$_SESSION['intentosclientes']=1;
  }
-//echo $_SESSION["verifica"];
-//echo $_SESSION['intentosclientes'];
+
 
 if ($_SESSION["verifica"] == 1 ||$_SESSION['intentos'] >1 || $_SESSION['intentosclientes']>1)  
 {  
-//unset($_SESSION['verifica']);
+
 if (isset($_POST['Enviar'])) { 
-if($_POST['Enviar']=="Conectar"){
 $verifica=1;
 $usuario = $_POST['Usuario'];
 $contraseña = $_POST['Contraseña'];
@@ -91,7 +89,7 @@ if(isset($_SESSION['intentos'])){
 		}				
 	}
 }
-//echo $_SESSION['intentos'];
+
 if(($usuarioOK==0) || ($sabernull==1)){
 	$selectquery="SELECT * FROM `novo_rexistro` WHERE usuario='$usuario'";
 	$resultado= mysqli_query($mysqli_link, $selectquery);
@@ -103,12 +101,9 @@ if(($usuarioOK==0) || ($sabernull==1)){
 	}
 
 	else{
-		//echo "Entra";
 		while($fila=mysqli_fetch_array($resultado2, MYSQLI_ASSOC)){
 			$usuarionuevo=$fila['usuario'];
-			//echo $usuario;
 			if($usuarionuevo==$usuario){
-				//echo "Entra";
 				$message="Esperando para Validación";
 
 
@@ -124,16 +119,13 @@ if(($usuarioOK==0) || ($sabernull==1)){
 if(($usuarioOK==1 && $contraseñaOK==0)){
 	if($saberadmin!=2){
 		++$_SESSION['intentosclientes'];
-		//echo $_SESSION['intentosclientes'];
 	}
 	if($saberadmin==2){
 		++$_SESSION['intentos'];
 		$intentos=$_SESSION['intentos'];
-		//echo $intentos;
 		if($intentos==3){
 			$saberbloqueado=1;
 			$saberbloqueadoquery="UPDATE `usuario` SET limite_inicios_sesion='$saberbloqueado' WHERE usuario='$usuario'";
-			//echo $saberbloqueadoquery;
 			mysqli_query($mysqli_link, $saberbloqueadoquery); 
 			$message="Se ha intentado 3 veces a administrador, bloqueado";
 			session_destroy();
@@ -148,8 +140,6 @@ if(($usuarioOK==1 && $contraseñaOK==0)){
 	if($saberadmin==1){
 
 	$message="Contraseña incorrecta o usuario incorrectos. Contacte con el administrador si no recuerda su contraseña o usuario";
-	//echo "<script>";
-	//echo "alert ('Contraseña incorrecta. Contacte con el administrador si no recuerda su contraseña')"; echo "</script>";
 }
 }
 if((($usuarioOK==1 && $contraseñaOK==1) && ($saberadmin!=2))){
@@ -172,7 +162,7 @@ header('Location:http://localhost/dashboard/paginasproyecto/PaginasAdministrador
 
 }
 mysqli_close($mysqli_link);  
-}
+
 }
 if(isset($_POST['Conectar'])){
 
@@ -204,7 +194,6 @@ echo "<META HTTP-EQUIV='Refresh' CONTENT='0; url=index.php'>";
 	    if ((!empty($message))&&($message==$mensaje2)) 
 	    {
 	      echo "<p>".$message."</p>";
-	      //echo $boton;
 	      $boton=NULL;
 	    }
 
@@ -216,7 +205,7 @@ echo "<META HTTP-EQUIV='Refresh' CONTENT='0; url=index.php'>";
 	    if ((!empty($message))&&($message==$mensaje3)) 
 	    {
 	      echo "<p>".$message."</p>";
-	      //echo $boton;
+	
 	      $boton=NULL;
 	    }
 	    if((!empty($message))&&($message==$mensaje4)){
@@ -262,7 +251,6 @@ echo "<META HTTP-EQUIV='Refresh' CONTENT='0; url=index.php'>";
 						    $jsonResponde = json_decode($respuestaValidación);
 						    if($jsonResponde->success)
 						    {
-						    	//echo $captchaOK;
 						    	$_SESSION['captchaOK']=1;
 						    	$captchaOK=$_SESSION['captchaOK'];
 							//entrará aquí cuando todo sea correcto
@@ -280,7 +268,6 @@ echo "<META HTTP-EQUIV='Refresh' CONTENT='0; url=index.php'>";
 							$_SESSION['captchaOK']=3;
 							
 							$captchaOK=$_SESSION['captchaOK'];
-							//header('Location:http://localhost/dashboard/index.php');
 							$_SESSION['intentosclientes']=3;
 							$message="Pulsa el captcha Por favor";
 							echo "<p>".$message."</p>";
@@ -347,9 +334,7 @@ echo "<META HTTP-EQUIV='Refresh' CONTENT='0; url=index.php'>";
 		}
 		?>
     <?php
-		//echo $_SESSION['captchaOK'];
     	if($_SESSION['intentosclientes']==3){
-    		//echo $_SESSION['captchaOK'];
     		$div= '<div class="g-recaptcha" data-sitekey="6Lfro0IaAAAAAORdQQ13bG_pusqAm__bEQu08aiK">'.'</div>';
 			echo $div;
 	}
@@ -367,32 +352,9 @@ echo "<META HTTP-EQUIV='Refresh' CONTENT='0; url=index.php'>";
     					header('Location:http://localhost/dashboard/paginasproyecto/crear_cuenta.php');
 
     			}
-    			if(isset($_POST['restaurar_contraseña_input'])){
-    					session_destroy();
-
-    			}
-        		/*$crear_cuenta_input='<input type="submit" name="Crear_Cuenta" value="Crear Cuenta">';
-    			echo $crear_cuenta_input;
-    			$restaurar_contraseña_input='<input type="text" name="Restaurar_Contraseña" value="Restaurar Contraseña">';
-    			echo $restaurar_contraseña_input;*/
         	?>
 
         	<input type="submit" name="crear_cuenta" value="Crear Cuenta">
-
-
-        <!-- <button class="g-recaptcha" 
-        	data-sitekey="6Lfnn0AaAAAAAFyU3u56znubqtkwLNX25hhkH2hA" 
-        	data-callback='onSubmit' 
-        	data-action='submit'>Submit</button>
-        -->
-        	<!--<div class="g-recaptcha" data-sitekey="6Lfnn0AaAAAAAFyU3u56znubqtkwLNX25hhkH2hA"></div>
-        	-->
-          <!--<form method="get" action="ejercicios/Ejercicio1.html">
-            <button type="submit">Crear Cuenta</button>
-          </form>-->
-<!--"window.location.href='https://w3docs.com';" como se insertar paginas de fuera-->
-<!--"document.location='/';" insertar paginas de dentro-->
-<!--<button onclick="document.location='/ejercicios/Ejercicio1.html';"> Crear Cuenta</button>-->
 		</form>
         </td>
       

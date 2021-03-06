@@ -124,7 +124,6 @@ $pdf->Ln(8);
 $pdf->Cell(60,0,'','T');
 $pdf->Ln(0);
 
-
 // PRODUCTOS
 $arraycuenta=array_count_values($_SESSION['Librosalquilar']);
 $selectquery="SELECT * FROM `libro_para_alquilar`";
@@ -226,7 +225,6 @@ $pdf->Cell(15, 10, number_format(round($total,2), 2, ',', ' ').EURO,0,0,'R');
 // PIE DE PAGINA
  
 $pdf->Output($usuario.'ticket.pdf','i');
-//echo "Hola";
 $_SESSION['Compralibro']=array();
 }
 

@@ -58,12 +58,10 @@ $mysqli_link= mysqli_connect("localhost", "root", "", "viviroutrasvidas");
         <li>
         <form method="post">
             <input type="submit" name="Volver_inicio" value="Volver Inicio">
-              <!--<input type="submit" name="Mostrar" value="Mostrar libros a Comprar/Alquilar">-->
             </form>
               <div align="right" id="Sesion">
             <?php
               echo '<p class="usuario">'.$usuario.'</p>';
-              //print_r($_SESSION['Compralibro']);
             ?>
               <form method="post">
                       <input text-align: center type="submit" name="volver_paginaprincipal" value="Salir Sesión">
@@ -174,7 +172,6 @@ $mysqli_link= mysqli_connect("localhost", "root", "", "viviroutrasvidas");
         $pagina_web=$fila['pagina_web'];
         echo'<div align="center" id="Imagenes">';
         echo "<br></br>";
-        //echo'<img src="$imagen" align=center">';
         echo "<img src='"."..\\".$imagen."' width='100px'>";
         echo "<br></br>";
         echo'</div>';
@@ -194,7 +191,6 @@ $mysqli_link= mysqli_connect("localhost", "root", "", "viviroutrasvidas");
         $pagina_web=$fila['pagina_web'];
         echo'<div align="center" id="Imagenes">';
         echo "<br></br>";
-        //echo'<img src="$imagen" align=center">';
         echo "<img src='"."..\\".$imagen."' width='200px'>";
         echo "<br></br>";
         echo'</div>';
@@ -223,7 +219,7 @@ $mysqli_link= mysqli_connect("localhost", "root", "", "viviroutrasvidas");
      echo "</tr>";
      echo "<tr>";
      echo   "<td><p>Descripcion</p></td>";
-     echo  "<td><textarea  type='text' name=".'descripcion'.""." rows='10' cols='100' value='".$descripcion."'> </textarea>";
+     echo  "<td><textarea  type='textarea' name=".'descripcion'.""." rows='10' cols='100' value='".$descripcion."'>".$descripcion."</textarea>";
      echo "</tr>";
      echo "<tr>";
      echo   "<td><p>Editorial</p></td>";
@@ -269,13 +265,16 @@ if(isset($_POST['Modificar_libro'])){
         $editorial=$_POST['editorial'];
         $precio=$_POST['precio'];
         $foto=$_POST['foto'];
+        $fotostr=str_replace("\\", "\\\\",$foto);
         if($idget<300){
         $libro=$_POST['libro'];
+        $librostr=str_replace("\\", "\\\\",$libro);
       }
         $paginaweb=$_POST['pagina_web'];
         if($idget<300){
-         $update="UPDATE `libro_para_alquilar` SET `titulo` = $titulo, `cantidad` = $cantidad, `descripcion` = $descripcion, `editorial` = $editorial, `precio` = $precio, `foto` = $foto, `libro` = $libro,
-          `pagina_web` = $paginaweb WHERE `ID` = '$idget'";   
+
+         $update="UPDATE `libro_para_alquilar` SET `titulo` = '$titulo', `cantidade` = '$cantidad', `descripcion` = '$descripcion', `editorial` = '$editorial', `precio` = '$precio', `foto` = '$fotostr', `libro` = '$librostr',
+          `pagina_web` = '$paginaweb' WHERE `ID` = '$idget'";   
         
         mysqli_query($mysqli_link,$update);
       }

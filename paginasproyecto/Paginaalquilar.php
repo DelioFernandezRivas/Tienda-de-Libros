@@ -12,7 +12,7 @@ if(!isset($_SESSION['usuario'])){
 
  if(!isset($_SESSION['Compralibro'])){
 
-  $_SESSION['Compralibro']=array();;
+  $_SESSION['Compralibro']=array();
   }
   if(!isset($_SESSION['Cantidadlibros'])){
 
@@ -28,37 +28,13 @@ if(!isset($_SESSION['usuario'])){
     $_SESSION['Cantidadlibros']=0;
 
   }
-    //print_r($_SESSION['Cantidadlibros']);
   }
-
-  /* $usuario=NULL;
-   $Libros=array();
-    $sesiones = 14;
-  settype($var, 'boolean');
-   $sesiones= settype('$_SESSION', object);
-   $count=str_replace('"','','count($_SESSION');
-   $finalcount=str_replace('"','',')');
-   $cantidadlibros=$_SESSION['Cantidadlibros'];
-  function comprobarSesion($variablesesion,$tipovariable,$variablecojer,$funcionesextra,$finalfuncionextra)
-{
-    
-      if(!isset($_SESSION[$variablesesion])){
-
-        $_SESSION[$variablesesion]=$tipovariable;
-        }
-        if(isset($_SESSION[$variablesesion])){
-        $variablecojer=$funcionesextra.[$variablesesion].$finalfuncionextra;
-      }
-}*/
 $mysqli_link= mysqli_connect("localhost", "root", "", "viviroutrasvidas");
 			if(mysqli_connect_errno())
 			{
 			  printf("MySQL connection failed with the error: %s", mysqli_connect_error());
 			  exit;
 			}
-     //comprobarSesion('usuario','ERROR',$usuario,addslashes($sesiones),NULL);
-      //comprobarSesion('Compralibro',array(0),$Libros,$sesiones,NULL);
-      //comprobarSesion('Cantidadlibros','0',$cantidadlibros,$count,$finalcount);
 ?>
 <html lang="en" dir="ltr">
   <head>
@@ -89,7 +65,6 @@ $mysqli_link= mysqli_connect("localhost", "root", "", "viviroutrasvidas");
 						<?php
 							echo '<p class="usuario">'.$usuario.'</p>';
               echo '<p class="usuario">'.'Libros comprados o para alquilar '.$_SESSION['Cantidadlibros'].'</p>';
-              //print_r($_SESSION['Compralibro']);
 						?>
 					  	<form method="post">
 					    				<input text-align: center type="submit" name="volver_paginaprincipal" value="Salir Sesión">
@@ -191,7 +166,6 @@ $mysqli_link= mysqli_connect("localhost", "root", "", "viviroutrasvidas");
   <div align="center" id="Izquierda">
   		<p>Imágenes</p>
   		<?php
-  	 //if (isset($_POST['Mostrar'])) {
       if(!isset($_GET['page']))
       {
 
@@ -206,12 +180,9 @@ $mysqli_link= mysqli_connect("localhost", "root", "", "viviroutrasvidas");
 				$imagen=$fila['foto'];
 				echo'<div align="center" id="Imagenes">';
 				echo "<br></br>";
-				//echo'<img src="$imagen" align=center">';
 				echo "<img src='".$imagen."' width='100px'>";
 				echo "<br></br>";
 				echo'</div>';
-
-	//}
 }
   		?>
   </div>
@@ -219,7 +190,6 @@ $mysqli_link= mysqli_connect("localhost", "root", "", "viviroutrasvidas");
   <div align="center" id="Derecha">
   	<p>Descripción</p>
   	<?php
-    //if (isset($_POST['Mostrar'])) {
       if(!isset($_GET['page']))
       {
 
@@ -228,11 +198,9 @@ $mysqli_link= mysqli_connect("localhost", "root", "", "viviroutrasvidas");
       else{
       $idcontadorpaginas=$_GET['page'];
     }
-      //echo $idcontadorpaginas;
   		$selectquery="SELECT * FROM `libro_para_alquilar` WHERE pagina_web='$idcontadorpaginas'";
 			$resultado= mysqli_query($mysqli_link, $selectquery);
-      //$contador=0;
-  	 while($fila=mysqli_fetch_array($resultado, MYSQLI_ASSOC)){
+     while($fila=mysqli_fetch_array($resultado, MYSQLI_ASSOC)){
 				$titulo=$fila['titulo'];
 				$cantidade=$fila['cantidade'];
 				$descripcion=$fila['descripcion'];
@@ -273,12 +241,9 @@ $pagina=1;
 $selectquery2="SELECT * FROM `libro_para_alquilar`";
 $resultado= mysqli_query($mysqli_link, $selectquery2);
 $filas=mysqli_num_rows($resultado);
-//echo $filas;
      while($fila=mysqli_fetch_array($resultado, MYSQLI_ASSOC)){
       $pagina_web=$fila['pagina_web'];
       $saberlibrosquedan=$filas-$contadortotales;
-      //echo $saberlibrosquedan;
-      //echo $contadorpaginas;
       if($saberlibrosquedan==1){
           $href = 'Paginaalquilar.php?page='.$pagina.'';
           echo '<button type=button onclick="window.location.href='."'".$href."'".'">'.$pagina."</button>";

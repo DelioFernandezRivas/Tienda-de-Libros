@@ -76,7 +76,6 @@ while($fila=mysqli_fetch_array($resultado, MYSQLI_ASSOC)){
         $imagen=$fila['foto'];
         $pagina_web=$fila['pagina_web'];
 				$pdf->SetFont('Helvetica', '', 7);
-				//$pdf->MultiCell(17.5,4,utf8_decode($fila['ID']),0,'C');
         $pdf->Cell(35, 5, utf8_decode($id),0,0,'C'); 
 				$pdf->Cell(35, 5, utf8_decode($titulo),0,0,'C');
         $pdf->Cell(35, 5, $cantidade,0,0,'C');
@@ -84,17 +83,13 @@ while($fila=mysqli_fetch_array($resultado, MYSQLI_ASSOC)){
         $pdf->Cell(35, 5, $precio.EURO,0,0,'C');
         $pdf->Cell(75, 5, $libro,0,0,'C');
         $pdf->Cell(75, 5, $imagen,0,0,'C');
-				//$pdf->Cell(15, -5," ", 2, ',', ' ').EURO,0,0,'R');
 				$pdf->Ln(3);
-				//$numero=number_format(round($cuenta*$fila['precio']), 2, ',', ' ');
-
 }
 
 
 // SUMATORIO DE LOS PRODUCTOS Y EL IVA
 // PIE DE PAGINA
 $pdf->Output('ticket.pdf','i');
-//echo "Hola";
 }
 
 
@@ -136,7 +131,6 @@ $pdf->Cell(50, 10, utf8_decode('Título'),0,0,'C');
 $pdf->Cell(50, 10, 'Cantidad',0,0,'C');
 $pdf->Cell(50, 10, 'Editorial',0,0,'C');
 $pdf->Cell(50, 10, 'Precio',0,0,'C');
-//$pdf->Cell(75, 10, 'Libro',0,0,'C');
 $pdf->Cell(75, 10, 'Foto',0,0,'C');
 $pdf->Ln(8);
 $pdf->Cell(315,0,'','T');
@@ -153,21 +147,16 @@ while($fila=mysqli_fetch_array($resultado, MYSQLI_ASSOC)){
         $editorial=$fila['editorial'];
         $precio=$fila['precio'];
         $id=$fila['ID'];
-       //$libro=$fila['libro'];
         $imagen=$fila['foto'];
         $pagina_web=$fila['pagina_web'];
         $pdf->SetFont('Helvetica', '', 7);
-        //$pdf->MultiCell(17.5,4,utf8_decode($fila['ID']),0,'C');
         $pdf->Cell(50, 5, utf8_decode($id),0,0,'C'); 
         $pdf->Cell(50, 5, utf8_decode($titulo),0,0,'C');
         $pdf->Cell(50, 5, $cantidade,0,0,'C');
         $pdf->Cell(50, 5, $editorial,0,0,'C');
         $pdf->Cell(50, 5, $precio.EURO,0,0,'C');
-        //$pdf->Cell(75, 5, $libro,0,0,'C');
         $pdf->Cell(75, 5, $imagen,0,0,'C');
-        //$pdf->Cell(15, -5," ", 2, ',', ' ').EURO,0,0,'R');
         $pdf->Ln(3);
-        //$numero=number_format(round($cuenta*$fila['precio']), 2, ',', ' ');
 
 }
 
@@ -175,7 +164,6 @@ while($fila=mysqli_fetch_array($resultado, MYSQLI_ASSOC)){
 // SUMATORIO DE LOS PRODUCTOS Y EL IVA
 // PIE DE PAGINA
 $pdf->Output('ticket.pdf','i');
-//echo "Hola";
 }
 
 
@@ -292,7 +280,6 @@ $pdf->Output('ticket.pdf','i');
 	<div id="grancontenedor">
     <form method="post">
             <input type="submit" name="Volver_inicio" value="Volver Inicio">
-              <!--<input type="submit" name="Mostrar" value="Mostrar libros a Comprar/Alquilar">-->
             </form>
 <div id="contenedor2">
   	<?php
@@ -327,3 +314,7 @@ $pdf->Output('ticket.pdf','i');
 
 </body>
 </html>
+<?php
+
+mysqli_close($mysqli_link);
+?>

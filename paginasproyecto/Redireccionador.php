@@ -37,11 +37,8 @@ $mysqli_link= mysqli_connect("localhost", "root", "", "viviroutrasvidas");
         exit;
       }
       $idobtenido=$_GET['ID'];
-      //echo $idobtenido;
       $selectquery="SELECT * FROM `libro_alquilado3` WHERE usuario='$usuario' AND ID='$idobtenido'";
       $resultado= mysqli_query($mysqli_link, $selectquery);
-      //print_r($_GET['pagina']);
-     //$cuentaalquilar=array_count_values($_SESSION['Librosalquilar']);
      $contadorlibros=0;
      $selectquery2="SELECT * FROM `libro_devuelto`";
      $resultado2= mysqli_query($mysqli_link, $selectquery2);
@@ -70,7 +67,6 @@ $mysqli_link= mysqli_connect("localhost", "root", "", "viviroutrasvidas");
         $contadorpaginas=1;
       }
      while($fila=mysqli_fetch_array($resultado, MYSQLI_ASSOC)){
-        //echo "Entra";
         $id=$fila['ID'];
         $titulo=$fila['titulo'];
         $cantidade=$fila['cantidade'];
@@ -103,11 +99,8 @@ $mysqli_link= mysqli_connect("localhost", "root", "", "viviroutrasvidas");
             if($iddevuelto!=$id){
           while($contadorlibros<=3){
               if($contadorlibros==3 && $contadorpaginas==$fila2['pagina_web']){
-                //echo "entra if";
                   $contadorpaginas++;
                   $contadorlibros=0;
-                  //|| $fila2['pagina_web']==$contadorpaginas && $fila2['usuario']!=$usuario
-                  //$contadorinsert++;
                 }
           $insert="INSERT  INTO `libro_devuelto`(`ID`,`titulo`,`cantidade`,`descripcion`,`editorial`,`foto`,`libro`,`usuario`,`Devolver`,`pagina_web`) VALUES('$id','$titulo','$cantidade','$descripcion','$editorial','$fotostr','$librostr','$usuario',0,$contadorpaginas);";
           mysqli_query($mysqli_link,$insert);

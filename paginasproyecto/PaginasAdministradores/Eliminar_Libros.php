@@ -58,12 +58,10 @@ $mysqli_link= mysqli_connect("localhost", "root", "", "viviroutrasvidas");
         <li>
         <form method="post">
             <input type="submit" name="Volver_inicio" value="Volver Inicio">
-              <!--<input type="submit" name="Mostrar" value="Mostrar libros a Comprar/Alquilar">-->
             </form>
               <div align="right" id="Sesion">
             <?php
               echo '<p class="usuario">'.$usuario.'</p>';
-              //print_r($_SESSION['Compralibro']);
             ?>
               <form method="post">
                       <input text-align: center type="submit" name="volver_paginaprincipal" value="Salir Sesión">
@@ -178,7 +176,6 @@ $mysqli_link= mysqli_connect("localhost", "root", "", "viviroutrasvidas");
   <div align="center" id="grancontenedor">
      <?php 
     echo '<form method='."'post'".'>';
-    // action='."'Admitir_usuarios_cojer_datos.php'".'
 
     ?>
   <div id ="contenedor">
@@ -193,10 +190,8 @@ $mysqli_link= mysqli_connect("localhost", "root", "", "viviroutrasvidas");
       else{
       $idcontadorpaginas=$_GET['page'];
     }
-      //echo $idcontadorpaginas;
       $selectquery="SELECT * FROM `libro_para_alquilar` WHERE pagina_web='$idcontadorpaginas'";
       $resultado= mysqli_query($mysqli_link, $selectquery);
-      //$contador=0;
      while($fila=mysqli_fetch_array($resultado, MYSQLI_ASSOC)){
         $titulo=$fila['titulo'];
         $cantidade=$fila['cantidade'];
@@ -237,10 +232,8 @@ $mysqli_link= mysqli_connect("localhost", "root", "", "viviroutrasvidas");
       else{
       $idcontadorpaginas=$_GET['page'];
     }
-      //echo $idcontadorpaginas;
       $selectquery="SELECT * FROM `libro_venta` WHERE pagina_web='$idcontadorpaginas'";
       $resultado= mysqli_query($mysqli_link, $selectquery);
-      //$contador=0;
      while($fila=mysqli_fetch_array($resultado, MYSQLI_ASSOC)){
         $titulo=$fila['titulo'];
         $cantidade=$fila['cantidade'];
@@ -278,43 +271,29 @@ $mysqli_link= mysqli_connect("localhost", "root", "", "viviroutrasvidas");
 echo '<div>';
 echo '<input type="submit" name="Eliminar_Libros" value="Eliminar Libros">';
 echo '</form>';
-//$delete="DELETE libro_para_alquilar,libro_venta FROM `libro_para_alquilar` AS libro_para_alquilar JOIN `libro_venta` AS libro_venta WHERE `libro_para_alquilar.ID`='$titulo' OR `libro_venta.ID`='$titulo';";
-//mysqli_query($mysqli_link,$delete);
 if(isset($_POST['Eliminar_Libros'])){
   $sabernullalquilar=0;
   $sabernullcomprar=0;
     $titulosarray=$_POST;
-    //print_r($_POST);
     foreach ($titulosarray as $tituloarray => $id) {
-      //echo $id;
       $selectquery="SELECT libro_para_alquilar.ID AS IDalquilar,libro_venta.ID AS IDventa from libro_para_alquilar JOIN libro_venta;";
       $resultado= mysqli_query($mysqli_link, $selectquery);
       while($fila=mysqli_fetch_array($resultado, MYSQLI_ASSOC)){
         $idalquilarsql=$fila['IDalquilar'];
         $idventasql=$fila['IDventa'];
-        //echo $idventasql;
-        //echo "  ".$id."  ";
-        //echo "  ".$idsql."  ";
         if($idalquilarsql==$id){
-          //echo "  ".$id."  ";
-        //print_r($fila['titulo']);
       if(!is_null($idalquilarsql)){
         $sabernullalquilar=1;
         $delete="DELETE FROM `libro_para_alquilar` WHERE ID='$idalquilarsql'";
         mysqli_query($mysqli_link,$delete);
-        //echo $idalquilarsql;
       }
     }
       if($idventasql==$id){
-         //echo "  ".$id."  ";
       if(!is_null($idventasql))
       {
         $sabernullcomprar=1;
         $delete="DELETE FROM `libro_venta` WHERE `ID`='$idventasql'";
         mysqli_query($mysqli_link,$delete);
-         //echo $idventasql;
-
-
       }
     }
       }
@@ -399,9 +378,6 @@ $filas3=mysqli_num_rows($resultado4);
       $pagina_web_venta=$fila['pagina_webventa'];
       if($filas2>$filas3){
       $saberlibrosquedan=$filas2-$contadortotales;
-       //echo " ".$saberlibrosquedan." ";
-      //echo " ".$contadortotales." ";
-      //echo $pagina_web_alquilar;
       if($saberlibrosquedan==1){
           $href = 'Eliminar_Libros.php?page='.$pagina.'';
           echo '<button type=button onclick="window.location.href='."'".$href."'".'">'.$pagina."</button>";

@@ -58,12 +58,10 @@ $mysqli_link= mysqli_connect("localhost", "root", "", "viviroutrasvidas");
         <li>
         <form method="post">
             <input type="submit" name="Volver_inicio" value="Volver Inicio">
-              <!--<input type="submit" name="Mostrar" value="Mostrar libros a Comprar/Alquilar">-->
             </form>
               <div align="right" id="Sesion">
             <?php
               echo '<p class="usuario">'.$usuario.'</p>';
-              //print_r($_SESSION['Compralibro']);
             ?>
               <form method="post">
                       <input text-align: center type="submit" name="volver_paginaprincipal" value="Salir Sesión">
@@ -154,7 +152,6 @@ $mysqli_link= mysqli_connect("localhost", "root", "", "viviroutrasvidas");
   <div align="center" id="Izquierda">
   		<p>Insertar Libros a Alquilar</p>
   		<?php
-  		//if (isset($_POST['Mostrar'])) {
   			 if(!isset($_GET['page']))
       {
 
@@ -218,7 +215,6 @@ echo '</form>';
   <div align="center" id="Derecha">
   	<p>Insertar Libros a Comprar</p>
   	<?php
-  		//if (isset($_POST['Mostrar'])) {
   			if(!isset($_GET['page']))
       {
 
@@ -227,7 +223,6 @@ echo '</form>';
       else{
       $idcontadorpaginas=$_GET['page'];
     }
-      //echo $idcontadorpaginas;
       echo '<form method="post">';
   	 for ($i=1; $i<=2 ; $i++) { 
     echo "<br></br>";
@@ -286,8 +281,10 @@ if(isset($_POST['Insertar_alquilar'])){
         $precio=$_POST['precio'.$i];
         $foto=$_POST['foto'.$i];
         $libro=$_POST['libro'.$i];
+        $fotostr=str_replace("\\", "\\\\",$foto);
+        $librostr=str_replace("\\", "\\\\",$libro);
         $paginaweb=$_POST['pagina_web'.$i];
-        $insert="INSERT INTO `libro_para_alquilar`(`ID`,`titulo`,`cantidade`,`descripcion`,`editorial`,`precio`,`foto`,`libro`,`pagina_web`) VALUES('$id','$titulo','$cantidad','$descripcion','$editorial','$precio','$foto','$libro','$paginaweb')";
+        $insert="INSERT INTO `libro_para_alquilar`(`ID`,`titulo`,`cantidade`,`descripcion`,`editorial`,`precio`,`foto`,`libro`,`pagina_web`) VALUES('$id','$titulo','$cantidad','$descripcion','$editorial','$precio','$fotostr','$librostr','$paginaweb')";
         mysqli_query($mysqli_link,  $insert);
 
      }
@@ -304,8 +301,9 @@ if(isset($_POST['Insertar_alquilar'])){
         $editorial=$_POST['editorial'.$i];
         $precio=$_POST['precio'.$i];
         $foto=$_POST['foto'.$i];
+        $fotostr=str_replace("\\", "\\\\",$foto);
         $paginaweb=$_POST['pagina_web'.$i];
-        $insert2="INSERT INTO `libro_venta`(`ID`,`titulo`,`cantidade`,`descripcion`,`editorial`,`precio`,`foto`,`pagina_web`) VALUES('$id','$titulo','$cantidad','$descripcion','$editorial','$precio','$foto','$paginaweb')";
+        $insert2="INSERT INTO `libro_venta`(`ID`,`titulo`,`cantidade`,`descripcion`,`editorial`,`precio`,`foto`,`pagina_web`) VALUES('$id','$titulo','$cantidad','$descripcion','$editorial','$precio','$fotostr','$paginaweb')";
         mysqli_query($mysqli_link,  $insert2);
 
      }

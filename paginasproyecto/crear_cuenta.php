@@ -38,7 +38,6 @@ if(mysqli_num_rows($resultado2)!=0){
               }
         $contadornumeropagina=array_count_values($numeros);
         $numeromayor=max(array($contadornumeropagina));
-        //print_r($numeromayor);
         $mayor=0;
         foreach ($numeromayor as $pagina => $cuenta) {
                 if($cuenta==3){
@@ -97,7 +96,6 @@ if(!is_null(mysqli_fetch_array($resultado, MYSQLI_ASSOC))){
 }
 
 
-//'$usuario','$contraseña','$nombre','$direccion',$telefono,'$Nifdni',0
 mysqli_close($mysqli_link);
 }
 ?>
@@ -148,15 +146,8 @@ mysqli_close($mysqli_link);
       <tr>
         <td>
           <button onclick="document.location='../index.php';"> Volver</button>
-          <!--<form method="get" action="ejercicios/Ejercicio1.html">
-            <button type="submit">Crear Cuenta</button>
-          </form>-->
-<!--"window.location.href='https://w3docs.com';" como se insertar paginas de fuera-->
-<!--"document.location='/';" insertar paginas de dentro-->
-<!--<button onclick="document.location='/ejercicios/Ejercicio1.html';"> Crear Cuenta</button>-->
         </td>
         </table>
-      <!--  <script src="scripts/crear_cuenta.js"></script>-->
         </body>
     </center>
 </html>

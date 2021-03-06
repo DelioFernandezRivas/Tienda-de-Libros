@@ -28,37 +28,14 @@ if(!isset($_SESSION['usuario'])){
     $_SESSION['Cantidadlibros']=0;
 
   }
-    //print_r($_SESSION['Cantidadlibros']);
   }
 
-  /* $usuario=NULL;
-   $Libros=array();
-    $sesiones = 14;
-  settype($var, 'boolean');
-   $sesiones= settype('$_SESSION', object);
-   $count=str_replace('"','','count($_SESSION');
-   $finalcount=str_replace('"','',')');
-   $cantidadlibros=$_SESSION['Cantidadlibros'];
-  function comprobarSesion($variablesesion,$tipovariable,$variablecojer,$funcionesextra,$finalfuncionextra)
-{
-    
-      if(!isset($_SESSION[$variablesesion])){
-
-        $_SESSION[$variablesesion]=$tipovariable;
-        }
-        if(isset($_SESSION[$variablesesion])){
-        $variablecojer=$funcionesextra.[$variablesesion].$finalfuncionextra;
-      }
-}*/
 $mysqli_link= mysqli_connect("localhost", "root", "", "viviroutrasvidas");
 			if(mysqli_connect_errno())
 			{
 			  printf("MySQL connection failed with the error: %s", mysqli_connect_error());
 			  exit;
 			}
-     //comprobarSesion('usuario','ERROR',$usuario,addslashes($sesiones),NULL);
-      //comprobarSesion('Compralibro',array(0),$Libros,$sesiones,NULL);
-      //comprobarSesion('Cantidadlibros','0',$cantidadlibros,$count,$finalcount);
 ?>
 <html lang="en" dir="ltr">
   <head>
@@ -198,19 +175,15 @@ $mysqli_link= mysqli_connect("localhost", "root", "", "viviroutrasvidas");
       else{
       $idcontadorpaginas=$_GET['page'];
     }
-  	 //if (isset($_POST['Mostrar'])) {
   			$selectquery="SELECT * FROM `libro_alquilado3` WHERE usuario='$usuario' AND pagina_web='$idcontadorpaginas'";
 			$resultado= mysqli_query($mysqli_link, $selectquery);
   	        while($fila=mysqli_fetch_array($resultado, MYSQLI_ASSOC)){
 				$imagen=$fila['foto'];
 				echo'<div align="center" id="Imagenes">';
 				echo "<br></br>";
-				//echo'<img src="$imagen" align=center">';
 				echo "<img src='".$imagen."' width='100px'>";
 				echo "<br></br>";
 				echo'</div>';
-
-	//}
 }
   		?>
   </div>
@@ -226,7 +199,6 @@ $mysqli_link= mysqli_connect("localhost", "root", "", "viviroutrasvidas");
       else{
       $idcontadorpaginas=$_GET['page'];
     }
-    //if (isset($_POST['Mostrar'])) {
   		$selectquery="SELECT * FROM `libro_alquilado3` WHERE usuario='$usuario' AND pagina_web='$idcontadorpaginas'";
 			$resultado= mysqli_query($mysqli_link, $selectquery);
   	 while($fila=mysqli_fetch_array($resultado, MYSQLI_ASSOC)){
@@ -246,12 +218,7 @@ $mysqli_link= mysqli_connect("localhost", "root", "", "viviroutrasvidas");
           else{
             echo "<p>".$cantidade."</p>";
           }
-				//echo "<p>".$descripcion."</p>";
 				echo "<p>".$editorial."</p>";
-        //echo '<form method='."'post'".'>';
-        //echo '<input type='."'submit'".' name='.$id."'Libro'".' value='."'Descargar Libro'".' onclick='."'document.location.href=".'"ImagenesIAW\Prueva.txt"'."'".'>';
-				//echo '<button onclick="document.location.href='."'ImagenesIAW\Prueva.txt'".";".'">'.$titulo."</button>";
-        //echo '<a href='."Redireccionador.php?pagina=".$pdf."?ID=".$id.'>';
         $selectquery2="SELECT Devolver FROM `libro_devuelto` WHERE `usuario`='$usuario' AND `ID`='$id' ";
         $resultado2= mysqli_query($mysqli_link, $selectquery2);
         $filas=mysqli_num_rows($resultado2);
@@ -278,30 +245,12 @@ $mysqli_link= mysqli_connect("localhost", "root", "", "viviroutrasvidas");
         echo "Descargar ".$titulo." y Devolver";
         echo '</a>';
        }
-
-        //echo '</form>';
-        // download='.$titulojunto.'
         echo'</div>';
-      //}
 }
 ?>
   </div>
 </div>
  <?php
- /*
-     $selectquery="SELECT * FROM `libro_para_alquilar`";
-     $resultado= mysqli_query($mysqli_link, $selectquery);
-     $contadorcadatres=0;
-     $contador=0;
-     while($fila=mysqli_fetch_array($resultado, MYSQLI_ASSOC)){
-      if($contadorcadatres==($contadorcadatres>=3)){
-      $href = 'Paginaalquilar.php?ID='.$contador.'';
-      echo '<button type=button onclick="window.location.href='."'".$href."'".'">'.$contador."</button>";
-      $contador++;
-  }
-      $contadorcadatres++;
-}
-*/
 
 $selectquery="SELECT * FROM `libro_alquilado3` WHERE usuario='$usuario';";
 $resultado= mysqli_query($mysqli_link, $selectquery);
@@ -311,12 +260,9 @@ $pagina=1;
 $selectquery2="SELECT * FROM `libro_alquilado3`WHERE usuario='$usuario';";
 $resultado= mysqli_query($mysqli_link, $selectquery2);
 $filas=mysqli_num_rows($resultado);
-//echo $filas;
      while($fila=mysqli_fetch_array($resultado, MYSQLI_ASSOC)){
       $pagina_web=$fila['pagina_web'];
       $saberlibrosquedan=$filas-$contadortotales;
-      //echo " ".$saberlibrosquedan." ";
-      //echo $contadorpaginas;
       if($saberlibrosquedan==1){
           $href = 'Ver_alquilados.php?page='.$pagina.'';
           echo '<button type=button onclick="window.location.href='."'".$href."'".'">'.$pagina."</button>";

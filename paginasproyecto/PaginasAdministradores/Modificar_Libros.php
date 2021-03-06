@@ -177,7 +177,6 @@ $mysqli_link= mysqli_connect("localhost", "root", "", "viviroutrasvidas");
 <center>
   <div align="center" id="grancontenedor">
      <?php 
-    // action='."'Admitir_usuarios_cojer_datos.php'".'
 
     ?>
   <div id ="contenedor">
@@ -192,10 +191,8 @@ $mysqli_link= mysqli_connect("localhost", "root", "", "viviroutrasvidas");
       else{
       $idcontadorpaginas=$_GET['page'];
     }
-      //echo $idcontadorpaginas;
       $selectquery="SELECT * FROM `libro_para_alquilar` WHERE pagina_web='$idcontadorpaginas'";
       $resultado= mysqli_query($mysqli_link, $selectquery);
-      //$contador=0;
      while($fila=mysqli_fetch_array($resultado, MYSQLI_ASSOC)){
         $titulo=$fila['titulo'];
         $cantidade=$fila['cantidade'];
@@ -237,10 +234,8 @@ $mysqli_link= mysqli_connect("localhost", "root", "", "viviroutrasvidas");
       else{
       $idcontadorpaginas=$_GET['page'];
     }
-      //echo $idcontadorpaginas;
       $selectquery="SELECT * FROM `libro_venta` WHERE pagina_web='$idcontadorpaginas'";
       $resultado= mysqli_query($mysqli_link, $selectquery);
-      //$contador=0;
      while($fila=mysqli_fetch_array($resultado, MYSQLI_ASSOC)){
         $titulo=$fila['titulo'];
         $cantidade=$fila['cantidade'];
@@ -294,9 +289,6 @@ $filas3=mysqli_num_rows($resultado4);
       $pagina_web_venta=$fila['pagina_webventa'];
       if($filas2>$filas3){
       $saberlibrosquedan=$filas2-$contadortotales;
-       //echo " ".$saberlibrosquedan." ";
-      //echo " ".$contadortotales." ";
-      //echo $pagina_web_alquilar;
       if($saberlibrosquedan==1){
           $href = 'Modificar_Libros.php?page='.$pagina.'';
           echo '<button type=button onclick="window.location.href='."'".$href."'".'">'.$pagina."</button>";

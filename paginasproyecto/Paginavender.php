@@ -58,14 +58,12 @@ $mysqli_link= mysqli_connect("localhost", "root", "", "viviroutrasvidas");
         <li>
         <form method="post">
             <input type="submit" name="Volver_inicio" value="Volver Inicio">
-              <!--<input type="submit" name="Mostrar" value="Mostrar libros a Comprar/Alquilar">-->
             </form>
             <button onclick="document.location='PaginaComprar_Alquilar.php';"> Mostrar libros a Comprar/Alquilar</button>
               <div align="right" id="Sesion">
             <?php
               echo '<p class="usuario">'.$usuario.'</p>';
               echo '<p class="usuario">'.'Libros comprados o para alquilar '.$_SESSION['Cantidadlibros'].'</p>';
-              //print_r($_SESSION['Compralibro']);
             ?>
               <form method="post">
                       <input text-align: center type="submit" name="volver_paginaprincipal" value="Salir Sesión">
@@ -173,7 +171,6 @@ $mysqli_link= mysqli_connect("localhost", "root", "", "viviroutrasvidas");
   <div align="center" id="Izquierda">
   		<p>Imágenes</p>
   		<?php
-  		//if (isset($_POST['Mostrar'])) {
   			 if(!isset($_GET['page']))
       {
 
@@ -188,12 +185,9 @@ $mysqli_link= mysqli_connect("localhost", "root", "", "viviroutrasvidas");
 				$imagen=$fila['foto'];
 				echo'<div align="center" id="Imagenes">';
 				echo "<br></br>";
-				//echo'<img src="$imagen" align=center">';
 				echo "<img src='".$imagen."' width='100px'>";
 				echo "<br></br>";
 				echo'</div>';
-
-		//}
 	}
   		?>
   </div>
@@ -201,7 +195,6 @@ $mysqli_link= mysqli_connect("localhost", "root", "", "viviroutrasvidas");
   <div align="center" id="Derecha">
   	<p>Descripción</p>
   	<?php
-  		//if (isset($_POST['Mostrar'])) {
   			if(!isset($_GET['page']))
       {
 
@@ -210,7 +203,6 @@ $mysqli_link= mysqli_connect("localhost", "root", "", "viviroutrasvidas");
       else{
       $idcontadorpaginas=$_GET['page'];
     }
-      //echo $idcontadorpaginas;
       $selectquery="SELECT * FROM `libro_venta` WHERE pagina_web='$idcontadorpaginas'";
       $resultado= mysqli_query($mysqli_link, $selectquery);
   	 while($fila=mysqli_fetch_array($resultado, MYSQLI_ASSOC)){
@@ -229,16 +221,12 @@ $mysqli_link= mysqli_connect("localhost", "root", "", "viviroutrasvidas");
           else{
             echo "<p>"."En Stock: ".$cantidade."</p>";
           }
-				//echo "<p>".$descripcion."</p>";
 				echo "<p>".$editorial."</p>";
 				echo "<p>".$precio."€</p>";
-				//echo '<button onclick="document.location='."'".$titulo.".php'".";".'">'.$titulo."</button>";
         echo '<form method='."'post'".' action='."'AñadirCarritoventa.php'".'>';
         echo '<input type="submit" name=".'.$id.'Carrito" value="Añadir al Carrito">';
         echo '</form>';
 				echo'</div>';
-
-		//}
 	}
   		?>
 
@@ -253,11 +241,9 @@ $pagina=1;
 $selectquery2="SELECT * FROM `libro_venta`";
 $resultado= mysqli_query($mysqli_link, $selectquery2);
 $filas=mysqli_num_rows($resultado);
-//echo $filas;
      while($fila=mysqli_fetch_array($resultado, MYSQLI_ASSOC)){
       $pagina_web=$fila['pagina_web'];
       $saberlibrosquedan=$filas-$contadortotales;
-       //echo " ".$saberlibrosquedan." ";
       if($saberlibrosquedan==1){
           $href = 'Paginavender.php?page='.$pagina.'';
           echo '<button type=button onclick="window.location.href='."'".$href."'".'">'.$pagina."</button>";
