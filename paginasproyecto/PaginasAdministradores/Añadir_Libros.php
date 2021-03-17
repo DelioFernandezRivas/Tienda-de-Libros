@@ -293,7 +293,7 @@ if(isset($_POST['Insertar_alquilar'])){
 
    if(isset($_POST['Insertar_comprar'])){
       for ($i=1; $i<=2 ; $i++) { 
-      if( isset($_POST['Id'.$i]) || isset($_POST['pagina_web'.$i])){
+      if( isset($_POST['Id'.$i]) || isset($_POST['pagina_web'.$i)){
          $id=$_POST['Id'.$i];
         $titulo=$_POST['titulo'.$i];
         $cantidad=$_POST['cantidad'.$i];

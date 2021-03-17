@@ -3,7 +3,7 @@ session_start();
 
 if(!isset($_SESSION['usuario'])){
   session_destroy();
-  header('Location:../index.php');
+  header('Location:http://localhost/dashboard/index.php');
 	}
 	if(isset($_SESSION['usuario'])){
 	$usuario=$_SESSION['usuario'];
@@ -29,7 +29,7 @@ if(!isset($_SESSION['usuario'])){
     $listaproductos=array();
   }
   }
-include 'Conexion.php';
+$mysqli_link= mysqli_connect("localhost", "root", "", "viviroutrasvidas");
 			if(mysqli_connect_errno())
 			{
 			  printf("MySQL connection failed with the error: %s", mysqli_connect_error());
@@ -68,7 +68,7 @@ include 'Conexion.php';
               <?php
                 if(isset($_POST['cancelar'])){
                     unset($_SESSION['Compralibro']);
-                    header('Location:PaginaComprar_Alquilar.php');
+                    header('Location:http://localhost/dashboard/paginasproyecto/PaginaComprar_Alquilar.php');
                   }
               ?>
     			    <div align="right" id="Sesion">
@@ -80,7 +80,6 @@ include 'Conexion.php';
               $compraralgo=0;
 							echo '<p class="usuario">'.$usuario.'</p>';
               echo '<p class="usuario">'.'Libros comprados o para alquilar '.$_SESSION['Cantidadlibros'].'</p>';
-             //print_r($_SESSION['Compralibro']);
 						?>
 					  	<form method="post">
 					    				<input text-align: center type="submit" name="volver_paginaprincipal" value="Salir Sesión">
@@ -88,35 +87,34 @@ include 'Conexion.php';
 							<?php
 							if (isset($_POST['volver_paginaprincipal'])) {
 								session_destroy();
-								header('Location:../index.php');
+								header('Location:http://localhost/dashboard/index.php');
 						}
 
 							if (isset($_POST['Volver_inicio'])) {
-								header('Location:PaginaPrincipal.php');
+								header('Location:http://localhost/dashboard/paginasproyecto/PaginaPrincipal.php');
 
 
 								}
                
                   if (isset($_POST['Comprar/Alquilar'])&&($_SESSION['Librosalquilar']!=NULL||$_SESSION['Libroscomprar']!=NULL)) {
                         if($_SESSION['Librosalquilar']!=NULL){
-                         
+                          $contadorlibros=1;
                            $selectquery="SELECT * FROM `libro_para_alquilar`";
                            $resultado= mysqli_query($mysqli_link, $selectquery);
                            $cuentaalquilar=array_count_values($_SESSION['Librosalquilar']);
-                           $contadorlibros=0;
                            $selectquery2="SELECT * FROM `libro_alquilado3` where `usuario`='$usuario'";
                            $resultado2= mysqli_query($mysqli_link, $selectquery2);
-                           if(mysqli_num_rows($resultado2)!=0){
+                           $numerocolumnas=mysqli_num_rows($resultado);
+                           if($numerocolumnas!=0){
                             $numeros=array();
                            while($fila2=mysqli_fetch_array($resultado2, MYSQLI_ASSOC)){
                             array_push($numeros, $fila2['pagina_web']);
                            }
                            $contadornumeropagina=array_count_values($numeros);
                            $numeromayor=max(array($contadornumeropagina));
-                           //print_r($numeromayor);
                            $mayor=0;
-                           foreach ($numeromayor as $pagina => $cuenta) {
-                            if($cuenta==3){
+                           foreach ($numeromayor as $pagina => $cuentamayor) {
+                            if($cuentamayor==3){
                             if($pagina>$mayor){
                               $mayor=$pagina;
                             }
@@ -124,15 +122,16 @@ include 'Conexion.php';
                            
                             }
                             $contadorpaginas=$mayor+1;
-                           
                             }
-                            else{
-
+                            else{  
                               $contadorpaginas=1;
                             }
+
+
                            while($fila=mysqli_fetch_array($resultado, MYSQLI_ASSOC)){
                             foreach ($cuentaalquilar as $ID => $cuenta) {
                               $contar=0;
+                              $id=$fila['ID'];
                               if(($fila['cantidade']>$cuenta || $fila['cantidade']==$cuenta) && $fila['ID']==$ID){
                                   $selectquery2="SELECT * FROM `libro_alquilado3`";
                                   $resultado2= mysqli_query($mysqli_link, $selectquery2);
@@ -151,9 +150,7 @@ include 'Conexion.php';
                                         mysqli_query($mysqli_link, $insert);
                                         $update="UPDATE `libro_para_alquilar` SET `cantidade` = cantidade-$cuenta WHERE `ID`='$ID';";
                                         mysqli_query($mysqli_link,$update);
-                                        $contadorlibros++;
-                                        echo "entra";
-                                        $validaralquilar=1;
+                                       $validaralquilar=1;
                                        
 
                                         }
@@ -161,21 +158,18 @@ include 'Conexion.php';
                                           $selectquery4="SELECT * FROM `libro_alquilado3`;";
                                           $resultado4= mysqli_query($mysqli_link, $selectquery4);
                                           while($fila2=mysqli_fetch_array($resultado4, MYSQLI_ASSOC)){
-                                          if($fila2['ID']==$fila['ID'] && $fila2['usuario'] == $usuario){
+                                          $contadorinsert=0;
+                                          if(($ID==$fila2['ID'] && $fila2['usuario'] == $usuario)){
                                            $idfila=$fila2['ID'];
+                                           if($fila['ID']==$idfila){
                                            $update2="UPDATE `libro_alquilado3` SET `cantidade` = cantidade+$cuenta WHERE `ID`='$idfila' AND `usuario`='$usuario';";
                                            mysqli_query($mysqli_link,$update2);
-                                             if($fila['ID']==$idfila){
-                                           $update="UPDATE `libro_para_alquilar` SET `cantidade` = cantidade-$cuenta WHERE `ID`='$idfila';";
-                                           mysqli_query($mysqli_link,$update);
-                                           
-                                         }
-                                           $validaralquilar=1;
+                                           }
+                                          $validaralquilar=1;
                                             
                                          } 
-                                          elseif($fila['ID']!=$fila2['ID'] && $usuario!=$fila2['usuario'] || $contadorpaginas==$fila2['pagina_web']){ 
-                                             $id=$fila['ID'];
-                                             $contadorinsert=0;
+                                          if(($ID!=$fila2['ID'] && $usuario==$fila2['usuario']) || ($ID!=$fila2['ID'] && $usuario!=$fila2['usuario'])){ 
+                                             $idfila=$fila2['ID'];
                                              $titulo=$fila['titulo'];
                                              $cantidade=$cuenta;
                                              $cantidadsql=$fila2['cantidade'];
@@ -187,32 +181,53 @@ include 'Conexion.php';
                                              $librostr=str_replace("\\", "\\\\",$libro);
                                               $insert="INSERT  INTO `libro_alquilado3`(`ID`,`titulo`,`cantidade`,`descripcion`,`editorial`,`foto`,`libro`,`usuario`,`pagina_web`) VALUES('$id','$titulo','$cantidade','$descripcion','$editorial','$fotostr','$librostr','$usuario',$contadorpaginas);";
                                               mysqli_query($mysqli_link,  $insert);
-                                              if($id==$ID&&$contar==0){
+                                              if(($idfila!=$fila2['ID']||$contar==0)){
+                                               
                                               $update="UPDATE `libro_para_alquilar` SET `cantidade` = cantidade-$cuenta WHERE `ID`='$id';";   
                                              mysqli_query($mysqli_link,$update);
                                              $contar++;
                                            }
-                                            
+                                           $selectquery2="SELECT * FROM `libro_alquilado3` where `usuario`='$usuario'";
+                                             $resultado2= mysqli_query($mysqli_link, $selectquery2);
+                                             $numerocolumnas=mysqli_num_rows($resultado);
+                                             if($numerocolumnas!=0){
+                                              $numeros=array();
+                                             while($fila2=mysqli_fetch_array($resultado2, MYSQLI_ASSOC)){
+                                              array_push($numeros, $fila2['pagina_web']);
+                                             }
+                                             $contadornumeropagina=array_count_values($numeros);
+                                             $numeromayor=max(array($contadornumeropagina));
+                                             $mayor=0;
+                                             foreach ($numeromayor as $pagina => $cuentamayor) {
+                                              if($cuentamayor==3){
+                                              if($pagina>$mayor){
+                                                $mayor=$pagina;
+                                              }
+                                            }
+                                             
+                                              }
+                                              $contadorpaginas=$mayor+1;
+                                              }
+                                              else{  
+                                                $contadorpaginas=1;
+                                              }
                                                while($contadorlibros==3){
-                                                if($contadorlibros==3 && $contadorpaginas==$fila2['pagina_web']){
-                                                  
+                                                if($contadorlibros==3){
                                                     $contadorpaginas++;
-                                                    $contadorlibros=0;
+                                                    $contadorlibros=1;
                                                     
                                                   }
-
-                                                  $contadorinsert++;
-                                                  $contadorlibros++;
                                                    if($contadorinsert==$cuenta){
                                                     break;
 
 
                                                   }
+                                                  
 
 
                                              }
                                           
-                                             
+                                             $contadorinsert++;
                                              $validaralquilar=1;
                                              
                                          } 
@@ -220,7 +235,7 @@ include 'Conexion.php';
                                      }
                                     
                                    }
-                                  
+                                  $contadorlibros++;
                                  }
                                   else{
 
@@ -228,6 +243,7 @@ include 'Conexion.php';
                                 }
                                     
                               }
+
                            }
                          }
                        
@@ -260,7 +276,7 @@ include 'Conexion.php';
                      
                     }
                        if(($validaralquilar==1 && $validarvender==1)||($validaralquilar==1 || $validarvender==1)){
-                          header('Location:Validacion_Comprar_Alquilar.php');
+                          header('Location:http://localhost/dashboard/paginasproyecto/Validacion_Comprar_Alquilar.php');
 
 
                        }
