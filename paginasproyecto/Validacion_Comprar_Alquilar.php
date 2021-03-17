@@ -4,7 +4,7 @@ session_start();
 if(!isset($_SESSION['usuario'])){
 
 	session_destroy();
-  header('Location:http://www.pimedelio.com/html/index.php');
+  header('Location:http://www.pimedelio.com/index.php');
 	}
 	if(isset($_SESSION['usuario'])){
 	$usuario=$_SESSION['usuario'];
@@ -353,7 +353,7 @@ $_SESSION['Compralibro']=array();
 					<?php
 					if (isset($_POST['Volver_inicio'])) {
 						$_SESSION['Compralibro']=array();
-						header('Location:http://www.pimedelio.com/html/paginasproyecto/PaginaPrincipal.php');
+						header('Location:http://www.pimedelio.com/paginasproyecto/PaginaPrincipal.php');
 						}
 
 

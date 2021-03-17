@@ -3,7 +3,7 @@ session_start();
 
 if(!isset($_SESSION['usuario'])){
   session_destroy();
-  header('Location:http://www.pimedelio.com/html/index.php');
+  header('Location:http://www.pimedelio.com/index.php');
 	}
 	if(isset($_SESSION['usuario'])){
 	$usuario=$_SESSION['usuario'];
@@ -68,7 +68,7 @@ include 'Conexion.php';
               <?php
                 if(isset($_POST['cancelar'])){
                     unset($_SESSION['Compralibro']);
-                    header('Location:http://www.pimedelio.com/html/paginasproyecto/PaginaComprar_Alquilar.php');
+                    header('Location:http://www.pimedelio.com/paginasproyecto/PaginaComprar_Alquilar.php');
                   }
               ?>
     			    <div align="right" id="Sesion">
@@ -87,11 +87,11 @@ include 'Conexion.php';
 							<?php
 							if (isset($_POST['volver_paginaprincipal'])) {
 								session_destroy();
-								header('Location:http://www.pimedelio.com/html/index.php');
+								header('Location:http://www.pimedelio.com/index.php');
 						}
 
 							if (isset($_POST['Volver_inicio'])) {
-								header('Location:http://www.pimedelio.com/html/paginasproyecto/PaginaPrincipal.php');
+								header('Location:http://www.pimedelio.com/paginasproyecto/PaginaPrincipal.php');
 
 
 								}

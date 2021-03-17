@@ -4,7 +4,7 @@ session_start();
 if(!isset($_SESSION['usuario'])){
 
 	session_destroy();
-  header('Location:http://www.pimedelio.com/html/index.php');
+  header('Location:http://www.pimedelio.com/index.php');
 	}
 	if(isset($_SESSION['usuario'])){
 	$usuario=$_SESSION['usuario'];
@@ -69,13 +69,13 @@ include 'Conexion.php';
               <?php
               if (isset($_POST['volver_paginaprincipal'])) {
                 session_destroy();
-                header('Location:http://www.pimedelio.com/html/index.php');
+                header('Location:http://www.pimedelio.com/index.php');
             }
               ?>
 
               <?php
               if (isset($_POST['Volver_inicio'])) {
-                header('Location:http://www.pimedelio.com/html/paginasproyecto/PaginasAdministradores/PaginaAdministradores.php');
+                header('Location:http://www.pimedelio.com/paginasproyecto/PaginasAdministradores/PaginaAdministradores.php');
 
 
 }
@@ -293,7 +293,7 @@ if(isset($_POST['Insertar_alquilar'])){
 
    if(isset($_POST['Insertar_comprar'])){
       for ($i=1; $i<=2 ; $i++) { 
-      if( isset($_POST['Id'.$i]) || isset($_POST['pagina_web'.$i)){
+        if(isset($_POST['Id'.$i])||isset($_POST['pagina_web'.$i])){
          $id=$_POST['Id'.$i];
         $titulo=$_POST['titulo'.$i];
         $cantidad=$_POST['cantidad'.$i];
@@ -309,6 +309,7 @@ if(isset($_POST['Insertar_alquilar'])){
      }
    }
    }
+
  ?>
 </div>
 	</center>

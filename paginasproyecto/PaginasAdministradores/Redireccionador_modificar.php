@@ -4,7 +4,7 @@ session_start();
 if(!isset($_SESSION['usuario'])){
 
   session_destroy();
-  header('Location:http://www.pimedelio.com/html/paginasproyecto/index.php');
+  header('Location:http://www.pimedelio.com/paginasproyecto/index.php');
   }
   if(isset($_SESSION['usuario'])){
   $usuario=$_SESSION['usuario'];

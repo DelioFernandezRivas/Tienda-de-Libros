@@ -78,7 +78,7 @@ if(!is_null(mysqli_fetch_array($resultado, MYSQLI_ASSOC))){
   if(is_null(mysqli_fetch_array($resultadonuevo, MYSQLI_ASSOC))){
 
     mysqli_query($mysqli_link, $insertarquery);
-    header('Location:http://www.pimedelio.com/html/index.php');
+    header('Location:http://www.pimedelio.com/index.php');
 
 
   }
