@@ -39,7 +39,7 @@ for($i=0;$i<count($librosarray);$i++)
                 $valorinicial=array_key_first($_SESSION['Compralibro']);
                 unset($_SESSION['Compralibro'][$key]);
                 array_splice($_SESSION['Compralibro'],$key,$valorinicial);
-                header('Location:http://localhost/dashboard/paginasproyecto/PaginaComprar_Alquilar.php');
+                header('Location:PaginaComprar_Alquilar.php');
                 break;
               } 
             }
@@ -55,7 +55,7 @@ for($i=0;$i<count($librosarray);$i++)
                   unset($_SESSION['Compralibro'][$keyanterior]);
                 }
                 array_splice($_SESSION['Compralibro'],$keyprimera,$valorinicial);
-                header('Location:http://localhost/dashboard/paginasproyecto/PaginaComprar_Alquilar.php');
+                header('Location:PaginaComprar_Alquilar.php');
               }
             }
           }
@@ -64,7 +64,7 @@ for($i=0;$i<count($librosarray);$i++)
         
          if(isset($_REQUEST["_".$librosarray[$i].'Aumentar'])){
           array_push($_SESSION['Compralibro'], $librosarray[$i]);
-          header('Location:http://localhost/dashboard/paginasproyecto/PaginaComprar_Alquilar.php');
+          header('Location:PaginaComprar_Alquilar.php');
       }
       next($_SESSION['Compralibro']);
       next($librosarray);

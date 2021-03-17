@@ -122,7 +122,7 @@ include 'Conexion.php';
 
         else{
 
-            header('Location:/paginasproyecto/Ver_alquilados.php');
+            header('Location:Ver_alquilados.php');
 
         }
 

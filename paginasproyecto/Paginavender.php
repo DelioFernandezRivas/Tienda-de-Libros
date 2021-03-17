@@ -78,8 +78,6 @@ include 'Conexion.php';
               <?php
               if (isset($_POST['Volver_inicio'])) {
                 header('Location:PaginaPrincipal.php');
-
-
 }
 
               ?>
