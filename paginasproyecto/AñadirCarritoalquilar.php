@@ -6,7 +6,7 @@ session_start();
 if(!isset($_SESSION['usuario'])){
 
 	session_destroy();
-  header('Location:http://localhost/dashboard/index.php');
+  header('Location:http://www.pimedelio.com/html/index.php');
 	}
 
 	if(isset($_SESSION['usuario'])){
@@ -51,7 +51,7 @@ for($i=0;$i<count($librosarray);$i++)
 						$contador3++;
   	 			}
   	 				$contador++;
-  	 				header('Location:PaginaComprar_Alquilar.php');
+  	 				header('Location:http://www.pimedelio.com/html/paginasproyecto/PaginaComprar_Alquilar.php');
 
 
   	 		}

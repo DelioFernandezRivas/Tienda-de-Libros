@@ -4,7 +4,7 @@ session_start();
 if(!isset($_SESSION['usuario'])){
 
   session_destroy();
-  header('Location:../index.php');
+  header('Location:http://www.pimedelio.com/html/index.php');
   }
   if(isset($_SESSION['usuario'])){
   $usuario=$_SESSION['usuario'];
@@ -122,7 +122,7 @@ include 'Conexion.php';
 
         else{
 
-            header('Location:Ver_alquilados.php');
+            header('Location:http://www.pimedelio.com/html/paginasproyecto/Ver_alquilados.php');
 
         }
 

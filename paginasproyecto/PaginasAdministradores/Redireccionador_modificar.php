@@ -4,7 +4,7 @@ session_start();
 if(!isset($_SESSION['usuario'])){
 
   session_destroy();
-  header('Location:../index.php');
+  header('Location:http://www.pimedelio.com/html/paginasproyecto/index.php');
   }
   if(isset($_SESSION['usuario'])){
   $usuario=$_SESSION['usuario'];
@@ -47,14 +47,14 @@ $resultado= mysqli_query($mysqli_link, $selectquery);
       $id_venta=$fila['id_venta'];
 if($idpost==$id_alquilar){               
   $href = 'Modificar_Libro.php?ID='.$idpost.'';
-  header('Location:PaginasAdministradores/'.$href.'');
+  header('Location:http://www.pimedelio.com/html/paginasproyecto/PaginasAdministradores/'.$href.'');
   break;
 
    }
 
    if($idpost==$id_venta){
      $href = 'Modificar_Libro.php?ID='.$idpost.'';
-     header('Location:PaginasAdministradores/'.$href.'');
+     header('Location:http://www.pimedelio.com/html/paginasproyecto/PaginasAdministradores/'.$href.'');
      break;
 
    }

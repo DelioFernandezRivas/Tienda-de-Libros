@@ -130,7 +130,7 @@ mysqli_close($mysqli_link);
 							<?php
 							if (isset($_POST['volver_paginaprincipal'])) {
 								session_destroy();
-								header('Location:../index.php');
+								header('Location:http://www.pimedelio.com/html/index.php');
 						}
 							?>
 
